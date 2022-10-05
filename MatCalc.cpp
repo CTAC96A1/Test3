@@ -4,6 +4,11 @@
 #include <iostream>
 using namespace std;
 
+
+
+
+
+
 int** CreateMatrix(int n)
 {
     int** matrix = new int* [n];
@@ -36,6 +41,12 @@ void ShowMatrix(int** m, int n)
 }
 
 
+int Det(int** m, int n)
+{
+
+}
+
+
 
 
 void DelMatrix(int** m, int n)
@@ -43,6 +54,23 @@ void DelMatrix(int** m, int n)
     for (int i = 0; i < n; i++)
         delete[] m[i];
     delete[] m;
+}
+
+
+void TestDet()
+{
+    int n = 3;
+    int** matrix = new int* [n];
+    for (int i = 0; i < n; i++)
+        matrix[i] = new int[n];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            matrix[i][j] = i + j;
+    int det = Det(&(*matrix), n);
+    if (det != 0)
+        cout << "\nОшибка, неверно посчитан определитель\n";
+    else
+        cout << "\nФункция сработала верно\n";
 }
 
 
@@ -59,6 +87,11 @@ int main()
     int** m2 = CreateMatrix(N);
     FillMatrix(&(*m2), N, 2);
     ShowMatrix(&(*m2), N);
+
+    TestDet();
+
+    DelMatrix(&(*m1), N);
+    DelMatrix(&(*m2), N);
 
     return 0;
 }
