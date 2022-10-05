@@ -165,7 +165,6 @@ int main()
     ShowMatrix(&(*mbuff), N);
 
     cout << "\nРазность матриц 1 и 2\n";
-    int** mbuff = CreateMatrix(N);
     SubsMatrix(&(*m1), &(*m2), &(*mbuff), N);
     ShowMatrix(&(*mbuff), N);
 
