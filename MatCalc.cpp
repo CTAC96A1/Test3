@@ -4,11 +4,6 @@
 #include <iostream>
 using namespace std;
 
-
-
-
-
-
 int** CreateMatrix(int n)
 {
     int** matrix = new int* [n];
@@ -41,9 +36,49 @@ void ShowMatrix(int** m, int n)
 }
 
 
-int Det(int** m, int n)
-{
 
+void Get_matr(int** matr, int n, int** temp_matr, int indRow, int indCol)
+{
+    int ki = 0;
+    for (int i = 0; i < n; i++) {
+        if (i != indRow) {
+            for (int j = 0, kj = 0; j < n; j++) {
+                if (j != indCol) {
+                    temp_matr[ki][kj] = matr[i][j];
+                    kj++;
+                }
+            }
+            ki++;
+        }
+    }
+}
+
+
+
+int Det(int** matr, int n)
+{
+    int temp = 0;   
+    int k = 1;      
+    if (n < 1) {
+        cout << "Не верный размер матрицы!!!" << endl;
+        return 0;
+    }
+    else if (n == 1)
+        temp = matr[0][0];
+    else if (n == 2)
+        temp = matr[0][0] * matr[1][1] - matr[1][0] * matr[0][1];
+    else {
+        for (int i = 0; i < n; i++) {
+            int m = n - 1;
+            int** temp_matr = new int* [m];
+            for (int j = 0; j < m; j++)
+                temp_matr[j] = new int[m];
+            Get_matr(matr, n, temp_matr, 0, i);
+            temp = temp + k * matr[0][i] * Det(temp_matr, m);
+            k = -k;
+        }
+    }
+    return temp;
 }
 
 
