@@ -92,6 +92,15 @@ void DelMatrix(int** m, int n)
 }
 
 
+void SummMatrix(int** A, int** B, int** buff, int n)
+{
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            buff[i][j] = A[i][j] + B[i][j];
+}
+
+
+
 void MultMatrix(int** A, int** B, int** buff, int n)
 {
     for (int i = 0; i < n; i++) {
@@ -143,6 +152,9 @@ int main()
     MultMatrix(&(*m1), &(*m2), &(*mbuff), N);
     ShowMatrix(&(*mbuff), N);
 
+ 	cout << "\nСложение матриц 1 и 2\n";
+    SummMatrix(&(*m1), &(*m2), &(*mbuff), N);
+    ShowMatrix(&(*mbuff), N);
 
     DelMatrix(&(*m1), N);
     DelMatrix(&(*m2), N);
